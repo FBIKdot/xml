@@ -9,3 +9,4 @@ export type {
   TextNode,
   XmlNode,
 } from "$/types.ts";
+export { stringify } from "$/stringify.ts";
