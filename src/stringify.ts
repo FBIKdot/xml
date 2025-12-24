@@ -18,7 +18,7 @@ interface StringifyOptions {
 export function stringify(
   nodes: XmlNode[],
   options?: Partial<StringifyOptions>,
-) {
+): string {
   options ??= {};
   options.mode ??= "compact";
   options.indentWidth ??= 2;
