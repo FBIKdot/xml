@@ -2,7 +2,12 @@ import NodeKinds from "$/constants/NodeKinds.ts";
 import TokenKind from "$/constants/TokenKind.ts";
 import Lexer from "$/Lexer.ts";
 import { parseOpeningTag, parseOrphanTag } from "$/parse-tag.ts";
-import type { NonEndingToken, RegularTagNode, Token, XmlNode } from "$/types.ts";
+import type {
+  NonEndingToken,
+  RegularTagNode,
+  Token,
+  XmlNode,
+} from "$/types.ts";
 
 /**
  * A class tasked with creating nodes out of the tokens found in a given input string.
@@ -23,8 +28,8 @@ export default class Parser {
       {
         kind: NodeKinds.RegularTag,
         tagName: "",
-        children: []
-      }
+        children: [],
+      },
     ];
     let parent = stack[0];
 
@@ -57,8 +62,9 @@ export default class Parser {
       }
     }
 
-    if (stack.length !== 1)
+    if (stack.length !== 1) {
       throw new Error("Unclosed tag at end of input.");
+    }
 
     return stack[0].children;
   }
@@ -67,7 +73,10 @@ export default class Parser {
    * Create a new node from an opening tag and add it to the current parent.
    * @returns The newly created node.
    */
-  private handleOpeningTag(token: NonEndingToken, parent: RegularTagNode): RegularTagNode {
+  private handleOpeningTag(
+    token: NonEndingToken,
+    parent: RegularTagNode,
+  ): RegularTagNode {
     const node = parseOpeningTag(token.value);
     parent.children.push(node);
     return node;
@@ -76,7 +85,11 @@ export default class Parser {
   /**
    * Create a new orphan tag node from an opening tag and add it to the current parent.
    */
-  private handleOrphan(token: NonEndingToken, parent: RegularTagNode, isDeclaration: boolean): void {
+  private handleOrphan(
+    token: NonEndingToken,
+    parent: RegularTagNode,
+    isDeclaration: boolean,
+  ): void {
     const node = parseOrphanTag(token.value, isDeclaration);
     parent.children.push(node);
   }
@@ -97,7 +110,8 @@ export default class Parser {
   private handleTextToken(token: NonEndingToken, parent: RegularTagNode): void {
     const value = token.value.trim();
 
-    if (value)
+    if (value) {
       parent.children.push({ kind: NodeKinds.Text, value });
+    }
   }
 }

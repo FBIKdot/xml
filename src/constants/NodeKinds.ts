@@ -6,7 +6,7 @@ const NodeKinds = {
   Text: "TEXT_NODE",
   Comment: "COMMENT_NODE",
   RegularTag: "REGULAR_TAG_NODE",
-  OrphanTag: "ORPHAN_TAG_NODE"
+  OrphanTag: "ORPHAN_TAG_NODE",
 } as const;
 
 export default NodeKinds;

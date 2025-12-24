@@ -25,25 +25,30 @@ export function parseOpeningTag(value: string): RegularTagNode {
   const node: RegularTagNode = {
     kind: NodeKinds.RegularTag,
     tagName,
-    children: []
+    children: [],
   };
 
-  if (attrString)
+  if (attrString) {
     node.attributes = parseAttributes(attrString);
+  }
 
   return node;
 }
 
-export function parseOrphanTag(value: string, isDeclaration: boolean): OrphanTagNode {
+export function parseOrphanTag(
+  value: string,
+  isDeclaration: boolean,
+): OrphanTagNode {
   const [tagName, attrString] = splitTag(value);
   const node: OrphanTagNode = {
     kind: NodeKinds.OrphanTag,
     tagName,
-    isDeclaration
+    isDeclaration,
   };
 
-  if (attrString)
+  if (attrString) {
     node.attributes = parseAttributes(attrString);
+  }
 
   return node;
 }

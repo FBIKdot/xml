@@ -31,7 +31,7 @@ will output the following:
     kind: "ORPHAN_TAG_NODE",
     tagName: "xml",
     isDeclaration: true,
-    attributes: { version: "1.0", encoding: "UTF-8" }
+    attributes: { version: "1.0", encoding: "UTF-8" },
   },
   {
     kind: "REGULAR_TAG_NODE",
@@ -40,21 +40,21 @@ will output the following:
       {
         kind: "REGULAR_TAG_NODE",
         tagName: "item",
-        children: [ { kind: "TEXT_NODE", value: "eggs" } ]
+        children: [{ kind: "TEXT_NODE", value: "eggs" }],
       },
       { kind: "COMMENT_NODE", value: " <item>steaks</item> " },
       {
         kind: "REGULAR_TAG_NODE",
         tagName: "item",
-        children: [ { kind: "TEXT_NODE", value: "shampoo" } ],
-        attributes: { urgent: "" }
+        children: [{ kind: "TEXT_NODE", value: "shampoo" }],
+        attributes: { urgent: "" },
       },
       {
         kind: "ORPHAN_TAG_NODE",
         tagName: "item",
-        isDeclaration: false
-      }
-    ]
-  }
-]
+        isDeclaration: false,
+      },
+    ],
+  },
+];
 ```

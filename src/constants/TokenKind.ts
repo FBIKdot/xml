@@ -6,7 +6,7 @@ const enum TokenKind {
   OpeningTag,
   ClosingTag,
   OrphanTag,
-  EndOfInput
+  EndOfInput,
 }
 
 export default TokenKind;

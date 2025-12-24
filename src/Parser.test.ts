@@ -37,8 +37,8 @@ describe("Parser - comment", () => {
     const sample1 = `<!-- <item>steaks</item> -->`;
     const nodes = new Parser(sample1).parse();
     assertEquals(nodes[0].kind, NodeKinds.Comment);
-    if (nodes[0].kind === NodeKinds.Comment){
-      assertEquals(nodes[0].value, " <item>steaks</item> ")
+    if (nodes[0].kind === NodeKinds.Comment) {
+      assertEquals(nodes[0].value, " <item>steaks</item> ");
     }
   });
 });

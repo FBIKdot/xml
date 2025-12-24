@@ -1,14 +1,14 @@
 import {
-  BANG,
   ANGLE_BRACKET_CLOSING,
   ANGLE_BRACKET_OPENING,
+  BANG,
   COMMENT_END,
   COMMENT_START,
   DOUBLE_DASH,
   EOF,
   LINE_FEED,
   QUESTION_MARK,
-  SLASH
+  SLASH,
 } from "$/constants/SpecialCharacters.ts";
 import TokenKind from "$/constants/TokenKind.ts";
 import type { NonEndingToken, Position, Token } from "$/types.ts";
@@ -29,7 +29,11 @@ export default class Lexer {
     return !output.endsWith(COMMENT_END);
   }
 
-  private static createToken(kind: NonEndingToken["kind"], value: string, position: Position): NonEndingToken {
+  private static createToken(
+    kind: NonEndingToken["kind"],
+    value: string,
+    position: Position,
+  ): NonEndingToken {
     return { kind, value, position };
   }
 
@@ -43,8 +47,8 @@ export default class Lexer {
   }
 
   /**
-  * Generates various tokens out of the provided input string.
-  */
+   * Generates various tokens out of the provided input string.
+   */
   public *lex(): Generator<Token> {
     let ch: string;
 
@@ -111,12 +115,17 @@ export default class Lexer {
     // current = ch after '!'
     const firstTwoChars = this.next() + this.next();
 
-    if (firstTwoChars !== DOUBLE_DASH)
+    if (firstTwoChars !== DOUBLE_DASH) {
       return Lexer.createToken(TokenKind.Bad, firstTwoChars, position);
+    }
 
     const value = this.scanWhile(Lexer.isComment);
     return value.endsWith(COMMENT_END)
-      ? Lexer.createToken(TokenKind.Comment, value.slice(0, value.length - 3), position)
+      ? Lexer.createToken(
+        TokenKind.Comment,
+        value.slice(0, value.length - 3),
+        position,
+      )
       : Lexer.createToken(TokenKind.Bad, COMMENT_START + value, position);
   }
 
@@ -124,22 +133,33 @@ export default class Lexer {
     // current = ch after leading '?'
     const value = this.scanWhile(Lexer.isTagCharacter);
 
-    if (!value.endsWith("?"))
+    if (!value.endsWith("?")) {
       return Lexer.createToken(TokenKind.Bad, value, position);
+    }
 
     this.advance(); // Skip '>'
-    return Lexer.createToken(TokenKind.Declaration, value.slice(0, -1), position);
+    return Lexer.createToken(
+      TokenKind.Declaration,
+      value.slice(0, -1),
+      position,
+    );
   }
 
   private tagToken(firstCh: string, position: Position): Token {
     const value = firstCh + this.scanWhile(Lexer.isTagCharacter);
     this.advance(); // Skip >
 
-    if (value[0] === SLASH)
+    if (value[0] === SLASH) {
       return Lexer.createToken(TokenKind.ClosingTag, value.slice(1), position);
+    }
 
-    if (value.at(-1) === SLASH)
-      return Lexer.createToken(TokenKind.OrphanTag, value.slice(0, -1), position);
+    if (value.at(-1) === SLASH) {
+      return Lexer.createToken(
+        TokenKind.OrphanTag,
+        value.slice(0, -1),
+        position,
+      );
+    }
 
     return Lexer.createToken(TokenKind.OpeningTag, value, position);
   }
