@@ -16,7 +16,11 @@
       "./src"
     ],
     "exclude": [
-      "./src/**/*.test.ts"
+      "./.github/",
+      "./src/**/*.test.ts",
+      "./.gitignore",
+      "./.vscode/",
+      "./samples/"
     ]
   },
   "compilerOptions": {
