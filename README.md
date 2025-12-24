@@ -1,4 +1,6 @@
-# XML Parser
+# XML Parser/Stringifier
+
+[![JSR Badge](https://jsr.io/badges/@fbik/xml)](https://jsr.io/@fbik/xml)
 
 A minimalistic XML/HTML parser/stringifier. Fork from
 [jsr:@melvdouc/xml-parser](https://jsr.io/@melvdouc/xml-parser)
