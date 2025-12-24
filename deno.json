@@ -24,6 +24,10 @@
     ]
   },
   "compilerOptions": {
+    "lib": [
+      "esnext",
+      "deno.ns"
+    ],
     "noUnusedLocals": false,
     "verbatimModuleSyntax": true
   }
