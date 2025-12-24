@@ -1,10 +1,14 @@
 # XML Parser
 
-A minimalistic XML/HTML parser. It:
+A minimalistic XML/HTML parser/stringifier. Fork from
+[jsr:@melvdouc/xml-parser](https://jsr.io/@melvdouc/xml-parser)
+
+It:
 
 - breaks an input down into tag and text nodes,
 - parses attributes,
-- checks if all tags are closed.
+- checks if all tags are closed,
+- let tag and text nodes back to string.
 
 Orphan (self-closing) tags are allowed.
 
