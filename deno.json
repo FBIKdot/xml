@@ -1,5 +1,5 @@
 {
-  "name": "@melvdouc/xml-parser",
+  "name": "@fbik/xml",
   "license": "MIT",
   "version": "0.1.2",
   "imports": {
